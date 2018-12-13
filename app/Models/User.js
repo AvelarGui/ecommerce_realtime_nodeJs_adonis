@@ -22,6 +22,16 @@ class User extends Model {
   }
 
   /**
+  * User Traits
+  **/
+  static get traits () {
+    return [
+      '@provider:Adonis/Acl/HasRole',
+      '@provider:Adonis/Acl/HasPermission'
+    ]
+  }
+
+  /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
    * `rememberToken` will be saved inside the
@@ -34,6 +44,12 @@ class User extends Model {
   tokens () {
     return this.hasMany('App/Models/Token')
   }
+
+
+  image(){
+    returns this.belongsTo('App/Models/Image')
+  }
+
 }
 
 module.exports = User
